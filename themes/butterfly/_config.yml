@@ -669,7 +669,7 @@ aside:
       link: https://github.com/gbCzz
   card_announcement:
     enable: true
-    content: 征集友链！看到这里的朋友如果有个人主页欢迎 Email 留下您的头像、昵称和主页链接
+    content: 征集友链！看到这里的朋友如果有个人主页，欢迎 Email 留下您的头像、昵称和主页链接
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
