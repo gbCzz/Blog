@@ -19,5 +19,9 @@ type: "link"
       link: https://yaossg.com
       avatar: https://yaossg.com/assets/images/sausage-128.png
       descr: Sausage is my middle name!
+    - name: Stapx Steve
+      link: https://stapxs.cn
+      avatar: https://blog.stapxs.cn/usr/uploads/2020/03/3664075920.png
+      descr: 要来点什么吗 QWQ
 
 {% endflink %}
