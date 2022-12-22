@@ -23,5 +23,9 @@ type: "link"
       link: https://stapxs.cn
       avatar: https://blog.stapxs.cn/usr/uploads/2020/03/3664075920.png
       descr: 要来点什么吗 QWQ
+    - name: hissin'
+      link: https://hissin.cn/
+      avatar: https://hissin.cn/src/200.png
+      descr: Creating Joy.
 
 {% endflink %}
