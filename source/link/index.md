@@ -27,5 +27,9 @@ type: "link"
       link: https://hissin.cn/
       avatar: https://hissin.cn/src/200.png
       descr: Creating Joy.
+    - name: LFCode
+      link: https://www.cnblogs.com/LFCode
+      avatar: https://z3.ax1x.com/2021/10/05/4v7jHS.png
+      descr: 我的头像十分可爱
 
 {% endflink %}
