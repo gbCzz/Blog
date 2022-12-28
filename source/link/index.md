@@ -31,5 +31,9 @@ type: "link"
       link: https://www.cnblogs.com/LFCode
       avatar: https://z3.ax1x.com/2021/10/05/4v7jHS.png
       descr: 我的头像十分可爱
+    - name: Zhengfourth
+      link: https://kagamine.xyz/
+      avatar: https://kagamine.xyz/images/avatar.png
+      descr: 个签不知道（
 
 {% endflink %}
