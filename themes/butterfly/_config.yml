@@ -598,10 +598,10 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 font:
-  global-font-size:
+  global-font-size: 18px
   code-font-size:
-  font-family:
-  code-font-family:
+  font-family: Arial, San Francisco, "Hiragino Sans GB", Roboto, "WenQuanYi Micro Hei", system-ui, -apple-system, BlinkMacSystemFont, "apple color emoji", "segoe ui emoji", "segoe ui symbol", sans-serif
+  code-font-family: ui-monospace, "Ubuntu Mono", SFMono-Regular, "SF Mono", Menlo, Consolas, Liberation Mono, "Microsoft Yahei", monospace
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
