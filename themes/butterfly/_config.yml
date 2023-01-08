@@ -598,7 +598,7 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 font:
-  global-font-size: 18px
+  global-font-size: 16px
   code-font-size:
   font-family: Arial, San Francisco, "Hiragino Sans GB", Roboto, "WenQuanYi Micro Hei", system-ui, -apple-system, BlinkMacSystemFont, "apple color emoji", "segoe ui emoji", "segoe ui symbol", sans-serif
   code-font-family: ui-monospace, "Ubuntu Mono", SFMono-Regular, "SF Mono", Menlo, Consolas, Liberation Mono, "Microsoft Yahei", monospace
