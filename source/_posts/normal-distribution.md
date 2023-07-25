@@ -10,7 +10,7 @@ categories: 技术
 
 关于正态分布，此处不再赘述，可以参考这篇文章：[数学基础 | 什么是正态分布？](https://zhuanlan.zhihu.com/p/537208406)
 
-Javascript 中的 `Math.random()` 随机数函数生成的是均匀分布于 $[0, 1)$ 的随机变量，转化成正态分布变量有两个方法。
+Javascript 中的 `Math.random()` 随机数函数生成的是均匀分布于 $[0, 1)$ 的随机变量，转化成正态分布变量有两个方法.第一种使用 **Box-Muller** 算法，生成成对的正态分布随机变量；第二种借助中心极限定理，通过对独立同分布随机变量取均值，得到正态分布随机变量。
 
 ## Box-Muller 算法
 
@@ -70,5 +70,51 @@ function NormalDistbRandom(mean, stdDev){
 	std[1] = Math.sqrt(-2 * (Math.log(u)/Math.log(Math.E))) * Math.sin(2 * Math.PI * v);
 	// 转换成所需的正态分布并返回
 	return [std[0] * stdDev + mean, std[1] * stdDev + mean];
+}
+```
+但是，这个算法的实现需要用到三角函数，时间效率比较低，所以我们有更高效的算法如下。
+
+## 中心极限定理
+
+中心极限定理指出，对于相互独立、服从相同分布且期望与方差有限的随机变量，即使原始变量本身不是正态分布，样本均值的抽样分布也趋向于正态分布。
+
+### 定理概述
+设随机变量 $X_1, X_2, ..., X_n$ 独立同分布，且具有有限的期望与方差 $E(X_i) = \mu, D(X_i) = \sigma^{2} \neq 0, (i = 1, 2, 3, ..., n)$，记 $\bar{X} = 1/n \sum^{n}_{i = 1} X_i, \zeta_n = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}$，则有 $\bar{X} \sim N(\mu, \frac{\sigma^2}{n}), \lim\limits_{n \to \infty}{P(\zeta_n <= z)} = \Phi(z)$，其中 $\Phi(z)$ 是标准正态分布的分布函数。关于此定理的证明请见 [中心极限定理 - 维基百科](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86)
+
+### 代码实现
+我们先将定理中得到的正态分布转换成标准正态分布。已知有：
+$$\bar{X} \sim N(\mu, \frac{\sigma^2}{n})$$
+其中 $\mu = E(X_i), \sigma^{2} = D(X_i) \neq 0, (i = 1, 2, 3, ..., n)$
+
+将所有样本减去 $\mu$ 得到：
+$$\bar{X} - \mu \sim N(0, \frac{\sigma^2}{n})$$
+
+将所有样本乘以 $\frac{\sqrt{n}}{\sigma}$ 得到：
+$$\frac{\sqrt{n}(\bar{X} - \mu)}{\sigma} \sim N(0, 1)$$
+
+上下同乘 $\sqrt{n}$ 得到：
+$$\frac{\sum^{n}_{i = 1} X_i - n\mu}{\sigma\sqrt{n}} \sim N(0, 1)$$
+
+Javascript 中的 `Math.random()` 随机数函数生成的是均匀分布于 $[0, 1)$ 的随机变量，其期望 $\mu = \frac{1}{2}$，方差 $\sigma^2 = \frac{1}{12}$，将其代入上式得到：
+$$\frac{\sum^{n}_{i = 1} X_i - \frac{n}{2}}{\frac{\sqrt{n}}{\sqrt{12}}} \sim N(0, 1)$$
+
+注意到当 $n = 12$ 时可以消去分母中的 $\sqrt{12}$，式中常数只有整数，也即：
+$$\sum^{12}_{i = 1} X_i - 6 \sim N(0, 1)$$
+
+很大程度上简化了实现步骤，节省时间开销。据此写出对应的代码：
+```js
+/**
+ * 生成服从正态分布的随机数
+ * @param {Number} mean 均值
+ * @param {Number} dev 标准差
+ * @return {*} 生成的随机数
+ */
+function NormalDistbRandom(mean, stdDev){
+	let std = 0;
+	for(let i = 0; i < 12; i ++) {
+		std += Math.random();
+	}
+	std -= 6;
+	return std * stdDev + mean;
 }
 ```
