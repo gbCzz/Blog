@@ -1,7 +1,9 @@
 ---
 title: 【补档】用 JavaScript 生成符合正态分布的随机样本
 date: 2023-01-08 16:30:29
-tags: JavaScript, 数学
+tags: 
+- JavaScript
+- 数学
 categories: 技术
 ---
 > 该博文为补档，原文作于 2022 年，现已遗失。由站主根据回忆补档并予以删改，或与原文略有出入。
